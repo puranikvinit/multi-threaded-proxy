@@ -1,0 +1,9 @@
+FROM python:latest
+
+WORKDIR /app
+
+COPY ./proxy-server.py /app/
+
+EXPOSE 8080
+
+CMD ["python", "proxy-server.py"]

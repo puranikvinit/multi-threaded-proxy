@@ -1,0 +1,7 @@
+FROM python:latest
+
+WORKDIR /app
+
+COPY ./client.py /app/
+
+CMD ["python", "client.py"]

@@ -1,0 +1,9 @@
+FROM python:latest
+
+WORKDIR /app
+
+COPY ./backend-server.py /app/
+
+EXPOSE 8000
+
+CMD ["python", "backend-server.py"]
