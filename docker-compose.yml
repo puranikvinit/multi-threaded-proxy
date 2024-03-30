@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+
+  proxy:
+    container_name: proxy-server
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
+    depends_on:
+      - backend
+
+  client:
+    container_name: client-server
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    depends_on:
+      - backend
+      - proxy
+    
