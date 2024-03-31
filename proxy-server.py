@@ -1,6 +1,9 @@
 import socket
 import threading
 import queue
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 class WorkerThread(threading.Thread):
     def __init__(self, queue):
@@ -10,7 +13,7 @@ class WorkerThread(threading.Thread):
     def run(self):
         while True:
             client_socket, backend_servers = self.queue.get()
-            print(f"Thread {threading.current_thread().name} handling client")
+            logging.info(f"Thread {threading.current_thread().name} handling client")
             self.handle_client(client_socket, backend_servers)
             self.queue.task_done()
 
