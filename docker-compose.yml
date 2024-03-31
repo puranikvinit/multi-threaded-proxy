@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
+    networks:
+      - backend-network
 
   proxy:
     container_name: proxy-server
@@ -13,6 +15,9 @@ services:
       dockerfile: Dockerfile.proxy
     depends_on:
       - backend
+    networks:
+      - backend-network
+      - client-network
 
   client:
     container_name: client-server
@@ -22,4 +27,10 @@ services:
     depends_on:
       - backend
       - proxy
+    networks:
+      - client-network
+
+networks:
+  backend-network:
+  client-network:
     
